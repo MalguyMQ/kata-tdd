@@ -14,7 +14,7 @@ describe('Add()', () => {
     test('Should detect delimiter', () => {
         expect(add('//;\n1;2')).toBe(3)
     })
-    test('Should throw error if numbers is negative', () => {
+    test('Should throw error if number is negative', () => {
         expect(() => {
             add('//;\n-1;2')
         }).toThrow(Error);

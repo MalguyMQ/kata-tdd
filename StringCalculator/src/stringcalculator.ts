@@ -16,10 +16,10 @@ export function add(string: string): number {
     let delimiter: string = ','
     if (string.length === 0) return 0
     if (hasDelimiter(string)) {
-        delimiter = string[2];
+        delimiter = string[2]
         string = string.substring(3)
     }
     const stringWithoutLineBreak: string = getStringWithoutLineBreak(string, delimiter)
-    const numbers = splitNumbersWithHisDelimiter(stringWithoutLineBreak, delimiter)
+    const numbers: number[] = splitNumbersWithHisDelimiter(stringWithoutLineBreak, delimiter)
     return numbers.reduce(reducer)
 }
