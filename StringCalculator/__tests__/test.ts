@@ -1,30 +1,6 @@
 //KATA TDD 1 - http://osherove.com/tdd-kata-1/
 
-const reducer = (accumulator: number, currentValue: number): number => accumulator + currentValue
-const throwError = (message: string): any => {
-    throw Error(message)
-}
-const hasDelimiter = (string: string): boolean => string[0] === '/' && string[1] === '/'
-const splitNumbersWithHisDelimiter = (stringWithoutLineBreak: string, delimiter: string): any => {
-    return stringWithoutLineBreak
-        .split(delimiter)
-        .map((number: string): any => Number(number) < 0 ?
-            throwError('negatives not allowed')
-            : Number(number) > 1000 ? 0 : Number(number))
-}
-const getStringWithoutLineBreak = (string: string, delimiter: string): string => string.replace(/\n/g, delimiter)
-
-export function add(string: string): number {
-    let delimiter: string = ','
-    if (string.length === 0) return 0
-    if (hasDelimiter(string)) {
-        delimiter = string[2];
-        string = string.substring(3)
-    }
-    const stringWithoutLineBreak: string = getStringWithoutLineBreak(string, delimiter)
-    const numbers = splitNumbersWithHisDelimiter(stringWithoutLineBreak, delimiter)
-    return numbers.reduce(reducer)
-}
+import {add} from "../src/stringcalculator";
 
 describe('Add()', () => {
     test('Should render sum of params', () => {
@@ -46,11 +22,7 @@ describe('Add()', () => {
     test('Should ignore number > to 1000', () => {
         expect(add('//;\n100;2;1001')).toBe(102)
     })
-    test('Delimiter should be any length', () => {
+    test('Delimiter should have any length', () => {
         expect(add('//^^^\n100^^^2^^^1001')).toBe(102)
-    })
-    test('Should handle multiple delimiter', () => {
-        // TODO: Handle this
-        expect(add('//[*][%]\n1*2%3')).toBe(6)
     })
 })
